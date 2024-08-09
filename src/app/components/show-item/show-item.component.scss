@@ -1,0 +1,43 @@
+.show-item {
+  position: relative;
+  height: 425px;
+  display: block;
+  border: 1px solid #999;
+  border-radius: 5px;
+  &-img {
+    height: 375px;
+    img {
+      width: 100%;
+      border-radius: 5px;
+      object-fit: cover;
+      height: 375px;
+    }
+  }
+  &-rating {
+    background-color: black;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    .pi {
+      font-size: 1.2rem;
+      color: gold;
+      margin-right: 5px;
+    }
+  }
+  &-title {
+    display: flex;
+    font-weight: bold;
+    height: 48px;
+    background-color: black;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 0 5px 5px 0;
+    padding: 0 10px;
+  }
+}
