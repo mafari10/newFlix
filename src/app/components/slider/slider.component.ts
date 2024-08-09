@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { MoviesService } from '../../services/movies.service';
+import { Component, Input, OnInit } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { img_Base_url } from '../../constants/imageUrl'
+import { Movie } from '../../model/movie';
 
 @Component({
   selector: 'app-slider',
@@ -22,9 +22,10 @@ import { img_Base_url } from '../../constants/imageUrl'
 
 })
 export class SliderComponent implements OnInit {
-  constructor(private moviesService: MoviesService) { }
-  // Movies here is an observable which uses async in the html to subscribe to it and get its value when available
-  movies$ = this.moviesService.getMoviesByType('popular');
+  // importing movie slider from home component this makes slider dynamic
+  @Input() slide: Movie[] = [];
+  constructor() { }
+
   // Round the number to 1dp
   roundNumber(num: number): number {
     return Math.floor(num);

@@ -17,6 +17,7 @@ import { mapToMovies } from '../../model/tvshow';
 })
 export class HomeComponent {
   constructor(private moviesService: MoviesService, private tvShowService: TvshowsService) { }
+  popularMovies$ = this.moviesService.getMoviesByType('popular');
   upcomingMovies$ = this.moviesService.getMoviesByType('upcoming', 12);
   topRatedMovies$ = this.moviesService.getMoviesByType('top_rated', 12);
   popularTvShows$ = this.tvShowService.getTvShowsByType('popular', 12)

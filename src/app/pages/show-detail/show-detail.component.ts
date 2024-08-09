@@ -3,12 +3,13 @@ import { ActivatedRoute } from '@angular/router';
 import { MoviesService } from '../../services/movies.service';
 import { Observable } from 'rxjs';
 import { Movie } from '../../model/movie';
-import { AsyncPipe, JsonPipe } from '@angular/common';
+import { AsyncPipe, CommonModule, JsonPipe } from '@angular/common';
+import { SliderComponent } from "../../components/slider/slider.component";
 
 @Component({
   selector: 'app-show-detail',
   standalone: true,
-  imports: [JsonPipe, AsyncPipe],
+  imports: [JsonPipe, CommonModule, AsyncPipe, SliderComponent],
   templateUrl: './show-detail.component.html',
   styleUrl: './show-detail.component.scss'
 })
