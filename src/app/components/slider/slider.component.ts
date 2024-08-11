@@ -24,6 +24,7 @@ import { Movie } from '../../model/movie';
 export class SliderComponent implements OnInit {
   // importing movie slider from home component this makes slider dynamic
   @Input() slide: Movie[] = [];
+  @Input() ishero: Boolean = false;
   constructor() { }
 
   // Round the number to 1dp
@@ -36,7 +37,9 @@ export class SliderComponent implements OnInit {
   // Counter for slider
   slideIndex = 0;
   ngOnInit() {
-    this.changeSlide();
+    if (!this.ishero) {
+      this.changeSlide();
+    }
   }
 
   changeSlide() {
