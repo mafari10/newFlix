@@ -11,6 +11,14 @@ export interface Movie {
     poster_path: string,
     original_language: string,
     original_title: string,
+    runtime?: number,
+    status?: string,
+    revenue?: number,
+    genres?: Genre[],
+}
+export type Genre = {
+    id: string;
+    name: string;
 }
 export interface MoviesDTO {
     page: number,
