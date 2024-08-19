@@ -1,7 +1,5 @@
 <ng-container *ngIf="show$ | async as show">
     <app-slider [slide]="[show]" [ishero]="true"></app-slider>
-
-
     <p-tabView>
         <p-tabPanel header="Overview">
             <div class="grid">
@@ -50,9 +48,13 @@
             </ng-container>
         </p-tabPanel>
         <p-tabPanel header="Photos">
-            <p>
-                At vero eos et accusamus et iusto odio dignissimos...
-            </p>
+            <ng-container *ngIf="showImages$ | async as showImages">
+                <div class="grid">
+                    <div class="col-2" *ngFor="let showImage of showImages">
+                        <p-image width="100%" [src]="imagesSize.large + showImage.file_path" [preview]="true" />
+                    </div>
+                </div>
+            </ng-container>
         </p-tabPanel>
     </p-tabView>
 </ng-container>

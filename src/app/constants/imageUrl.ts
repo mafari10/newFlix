@@ -5,3 +5,5 @@ export const imgBySize = {
     medium: `${img_Base_url}w342`,
     large: `${img_Base_url}original`,
 }
+
+export const movieImage: string = "https://api.themoviedb.org/3/movie/"

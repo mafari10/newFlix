@@ -5,6 +5,8 @@ import { apiBaseUrl, apiBasekey } from "../constants/api";
 import { map } from 'rxjs';
 import { Video, VideoDto } from '../model/videos';
 import { videoUrl } from '../constants/videoUrl';
+import { movieImage } from '../constants/imageUrl';
+import { ImagesDTO } from '../model/images';
 
 @Injectable({
   providedIn: 'root',
@@ -22,4 +24,8 @@ export class MoviesService {
   getMovieVideos(id: string) {
     return this.http.get<VideoDto>(`${videoUrl}/${id}/videos?api_key=${this.apiBasekey}`).pipe(map(data => data.results))
   }
+  getMovieImages(id: string) {
+    return this.http.get<ImagesDTO>(`${movieImage}${id}/images?api_key=${this.apiBasekey}`).pipe(map(data => data.backdrops))
+  }
+
 }

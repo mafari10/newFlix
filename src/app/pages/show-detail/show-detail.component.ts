@@ -9,11 +9,13 @@ import { TabViewModule } from 'primeng/tabview';
 import { imgBySize } from '../../constants/imageUrl';
 import { Video } from '../../model/videos';
 import { VideoEmbedComponent } from "../../components/video-embed/video-embed.component";
+import { ImageModule } from 'primeng/image';
+import { Images } from '../../model/images';
 
 @Component({
   selector: 'app-show-detail',
   standalone: true,
-  imports: [JsonPipe, CommonModule, AsyncPipe, SliderComponent, TabViewModule, VideoEmbedComponent],
+  imports: [JsonPipe, CommonModule, ImageModule, AsyncPipe, SliderComponent, TabViewModule, VideoEmbedComponent],
   templateUrl: './show-detail.component.html',
   styleUrl: './show-detail.component.scss'
 })
@@ -22,6 +24,7 @@ export class ShowDetailComponent implements OnInit {
   show$: Observable<Movie> | null = null;
   imagesSize = imgBySize;
   showVideos$: Observable<Video[]> | null = null;
+  showImages$: Observable<Images[]> | null = null;
 
   private router = inject(ActivatedRoute);
   private moviesService = inject(MoviesService);
@@ -34,5 +37,6 @@ export class ShowDetailComponent implements OnInit {
     this.show_id = this.router.snapshot.params['id'];
     this.show$ = this.moviesService.getMovieById(this.show_id);
     this.showVideos$ = this.moviesService.getMovieVideos(this.show_id);
+    this.showImages$ = this.moviesService.getMovieImages(this.show_id);
   }
 }
