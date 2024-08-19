@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Movie, MoviesDTO } from '../model/movie';
 import { apiBaseUrl, apiBasekey } from "../constants/api";
 import { map } from 'rxjs';
+import { Video, VideoDto } from '../model/videos';
+import { videoUrl } from '../constants/videoUrl';
 
 @Injectable({
   providedIn: 'root',
@@ -16,5 +18,8 @@ export class MoviesService {
   }
   getMovieById(id: string) {
     return this.http.get<Movie>(`${this.ApiUrl}/movie/${id}?api_key=${this.apiBasekey}`);
+  }
+  getMovieVideos(id: string) {
+    return this.http.get<VideoDto>(`${videoUrl}/${id}/videos?api_key=${this.apiBasekey}`).pipe(map(data => data.results))
   }
 }

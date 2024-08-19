@@ -41,9 +41,13 @@
             </div>
         </p-tabPanel>
         <p-tabPanel header="Videos">
-            <p>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium...
-            </p>
+            <ng-container *ngIf="showVideos$ | async as videos">
+                <div class="grid">
+                    <div class="col-4" *ngFor="let video of videos">
+                        <app-video-embed [video]="video.key"></app-video-embed>
+                    </div>
+                </div>
+            </ng-container>
         </p-tabPanel>
         <p-tabPanel header="Photos">
             <p>
