@@ -7,6 +7,7 @@ import { Video, VideoDto } from '../model/videos';
 import { videoUrl } from '../constants/videoUrl';
 import { movieImage } from '../constants/imageUrl';
 import { ImagesDTO } from '../model/images';
+import { CreditsDto } from '../model/genre';
 
 @Injectable({
   providedIn: 'root',
@@ -26,6 +27,9 @@ export class MoviesService {
   }
   getMovieImages(id: string) {
     return this.http.get<ImagesDTO>(`${movieImage}${id}/images?api_key=${this.apiBasekey}`).pipe(map(data => data.backdrops))
+  }
+  getMovieCredit(id: string) {
+    return this.http.get<CreditsDto>(`${movieImage}${id}/credits?api_key=${this.apiBasekey}`).pipe(map(data => data.cast))
   }
 
 }

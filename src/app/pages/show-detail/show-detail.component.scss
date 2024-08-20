@@ -9,6 +9,12 @@
   .p-tabview .p-tabview-nav .p-tabview-ink-bar {
     background-color: $primary-color;
   }
+  img.poster {
+    border-radius: 10px;
+  }
+  p.text {
+    text-align: center;
+  }
 }
 .overview {
   line-height: 1.5;
@@ -25,8 +31,10 @@
     text-transform: capitalize;
   }
 }
+
 .show-image {
   width: 100%;
+
   // cursor: pointer;
   // transition: transform 0.9s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
@@ -34,3 +42,14 @@
 //   transform: translate(0px, 5px);
 //   filter: blur(0.5px);
 // }
+.actor {
+  padding: 5px;
+  img {
+    width: 100%;
+    border: 2px solid $primary-color;
+    border-radius: 10px;
+  }
+  div {
+    text-align: center;
+  }
+}

@@ -1,5 +1,6 @@
-<ng-container *ngIf="show$ | async as show">
+<ng-container *ngIf="show$ | async as show; else NoData">
     <app-slider [slide]="[show]" [ishero]="true"></app-slider>
+
     <p-tabView>
         <p-tabPanel header="Overview">
             <div class="grid">
@@ -39,7 +40,7 @@
             </div>
         </p-tabPanel>
         <p-tabPanel header="Videos">
-            <ng-container *ngIf="showVideos$ | async as videos">
+            <ng-container *ngIf="showVideos$ | async as videos; else NoPicture">
                 <div class="grid">
                     <div class="col-4" *ngFor="let video of videos">
                         <app-video-embed [video]="video.key"></app-video-embed>
@@ -48,7 +49,7 @@
             </ng-container>
         </p-tabPanel>
         <p-tabPanel header="Photos">
-            <ng-container *ngIf="showImages$ | async as showImages">
+            <ng-container *ngIf="showImages$ | async as showImages;else NoPicture">
                 <div class="grid">
                     <div class="col-2" *ngFor="let showImage of showImages">
                         <p-image width="100%" [src]="imagesSize.large + showImage.file_path" [preview]="true" />
@@ -57,7 +58,26 @@
             </ng-container>
         </p-tabPanel>
     </p-tabView>
+    <ng-container *ngIf="showActors$ | async as showActors">
+        <p-carousel [value]="showActors" [numVisible]="6" [numScroll]="3" [circular]="false">
+            <ng-template let-showActors pTemplate="item">
+                <div class="actor">
+                    <img *ngIf="showActors.profile_path; else NoPicture"
+                        [src]="imagesSize.small+showActors.profile_path" alt="">
+                    <div>{{showActors.character}}</div>
+                    <div>({{showActors.name}})</div>
+                </div>
+            </ng-template>
+        </p-carousel>
+    </ng-container>
+
 </ng-container>
+<ng-template #NoPicture>
+    <img src="../../../assets/images/actor.jpg" alt="No Picture">
+</ng-template>
+<ng-template #NoData>
+    <p class="text">Sorry No Data Found 😢</p>
+</ng-template>
 
 <p>The Movie ID is {{show_id}}</p>
 <pre>{{show$ | async | json}}</pre>
